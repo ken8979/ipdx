@@ -4,7 +4,7 @@ import FirebaseAnalytics from "@/components/FirebaseAnalytics";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja">
+    <html lang="ja" style={{ colorScheme: 'light' }}>
       <body className="bg-[#f0f2f5] text-gray-900 font-sans min-h-screen flex flex-col">
         <FirebaseAnalytics />
         {/* マイナポータル/j-BIZ風のヘッダー */}
