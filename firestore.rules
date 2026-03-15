@@ -1,0 +1,13 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /applications/{application} {
+      allow create: if true;
+      allow read, update, delete: if false; // 管理者のみに制限するべき（後ほど設定）
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
