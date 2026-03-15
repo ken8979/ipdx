@@ -3,6 +3,8 @@
 import { useState, use } from "react";
 import Link from "next/link";
 import { ChevronRight, CheckCircle } from "lucide-react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function ApplyFormPage(props: { params: Promise<{ id: string }> }) {
   const params = use(props.params);
@@ -21,12 +23,15 @@ export default function ApplyFormPage(props: { params: Promise<{ id: string }> }
       purpose: formData.get("purpose"),
       desiredPeriod: formData.get("desiredPeriod"),
       budget: formData.get("budget"),
+      createdAt: serverTimestamp(),
       status: "pending"
     };
 
     try {
       console.log("Submitting:", data);
-      await new Promise((res) => setTimeout(res, 1000));
+      // Firestoreへの保存
+      await addDoc(collection(db, "applications"), data);
+      
       setStatus("success");
     } catch (error) {
       console.error(error);

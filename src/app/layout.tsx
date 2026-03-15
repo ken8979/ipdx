@@ -1,10 +1,12 @@
 import "./globals.css";
 import Link from "next/link";
+import FirebaseAnalytics from "@/components/FirebaseAnalytics";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <body className="bg-[#f0f2f5] text-gray-900 font-sans min-h-screen flex flex-col">
+        <FirebaseAnalytics />
         {/* マイナポータル/j-BIZ風のヘッダー */}
         <header className="bg-white border-b border-gray-300">
           <div className="bg-[#004f98] h-2 w-full"></div>
